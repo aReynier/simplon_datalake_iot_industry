@@ -83,7 +83,17 @@ Notre datalake est organisé avec les couches suivantes:
 
 ## Guide de déploiement
 
-Ce datalake est conteneurisé au moyen d'un docker compose (suite à venir)
+Ce datalake est conteneurisé au moyen d'un docker compose, pour le lancer:
+
+```
+docker compose up
+```
+
+Minio se trouve à l'adresse suivante:
+
+```
+http://localhost:9001
+```
 
 ## Source
 
