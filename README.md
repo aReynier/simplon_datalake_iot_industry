@@ -83,7 +83,87 @@ Notre datalake est organisé avec les couches suivantes:
 
 ## Guide de déploiement
 
-Ce datalake est conteneurisé au moyen d'un docker compose (suite à venir)
+Ce datalake est conteneurisé au moyen d'un docker compose, pour le lancer:
+
+```
+docker compose up
+```
+
+Minio se trouve à l'adresse suivante:
+
+```
+http://localhost:9001
+```
+
+se connecter avec les bon identifiants (rempalcer name et password) et création de l'alias local
+mc alias set local http://minio:9000 name password
+
+Création des buckets raw, staging, curated, archive:
+
+```
+docker exec -it minio bash
+```
+
+```
+mc mb local/raw --ignore-existing
+```
+
+```
+mc mb local/staging --ignore-existing
+```
+
+```
+mc mb local/curated --ignore-existing
+```
+
+```
+mc mb local/archive --ignore-existing
+```
+
+créer des utilisateurs puis les associer à chaque groupe
+mc admin user add local analyst 123456789
+mc admin user add local engineer 123456789
+mc admin user add local admin 123456789
+
+mc admin group add local data-analyst analyst
+mc admin group add local data-engineer engineer
+mc admin group add local admin admin
+
+mc admin policy attach local readwrite --group data-engineer
+
+mc admin policy attach local readwrite --group admin
+
+pour créer le json de policy pour analyst
+
+```
+cat > /tmp/analyst-policy.json <<'EOF'
+{
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": ["s3:GetBucketLocation", "s3:ListBucket"],
+         "Resource": ["arn:aws:s3:::curated"]
+      },
+      {
+         "Effect": "Allow",
+         "Action": ["s3:GetObject"],
+         "Resource": ["arn:aws:s3:::curated/*"]
+    }
+  ]
+}
+EOF
+```
+
+```
+mc admin policy create local readonly-curated /tmp/analyst-policy.json
+```
+
+ensuite pour attacher aux analyst la policy du json
+
+```
+mc admin policy attach local readonly-curated --group data-analyst
+```
 
 ## Source
 
