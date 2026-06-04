@@ -1,0 +1,51 @@
+services:
+  minio:
+    image: minio/minio:RELEASE.2025-09-07T16-13-09Z-cpuv1
+    container_name: minio
+    env_file: .env
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    networks:
+      - minio-network
+    volumes:
+      - minio-volume:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    healthcheck:
+      test: curl -f http://localhost:9000/minio/health/live
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: server /data --console-address ":9001"
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: minio_init
+    depends_on:
+      - minio
+    volumes:
+      - ./init-minio.sh:/tmp/init-minio.sh:ro
+      - ./policies/analyst-policy.json:/tmp/policies/analyst-policy.json:ro
+    env_file: .env
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_LOCAL_ANALYST_USER=${MINIO_LOCAL_ANALYST_USER}
+      - MINIO_LOCAL_ANALYST_PASSWORD=${MINIO_LOCAL_ANALYST_PASSWORD}
+      - MINIO_LOCAL_ENGINEER_USER=${MINIO_LOCAL_ENGINEER_USER}
+      - MINIO_LOCAL_ENGINEER_PASSWORD=${MINIO_LOCAL_ENGINEER_PASSWORD}
+      - MINIO_LOCAL_ADMIN_USER=${MINIO_LOCAL_ADMIN_USER}
+      - MINIO_LOCAL_ADMIN_PASSWORD=${MINIO_LOCAL_ADMIN_PASSWORD}
+    networks:
+      - minio-network
+    entrypoint: /bin/bash /tmp/init-minio.sh
+
+networks:
+  minio-network:
+    driver: bridge
+
+volumes:
+  minio-volume:
+    driver: local
