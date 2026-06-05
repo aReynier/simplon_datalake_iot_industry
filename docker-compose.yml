@@ -24,7 +24,8 @@ services:
     image: minio/mc:latest
     container_name: minio_init
     depends_on:
-      - minio
+      minio:
+        condition: service_healthy
     volumes:
       - ./init-minio.sh:/tmp/init-minio.sh:ro
       - ./policies/analyst-policy.json:/tmp/policies/analyst-policy.json:ro
@@ -41,6 +42,20 @@ services:
     networks:
       - minio-network
     entrypoint: /bin/bash /tmp/init-minio.sh
+
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: python
+    depends_on:
+      minio-init:
+        condition: service_completed_successfully
+    volumes:
+      - ./app:/app
+    networks:
+      - minio-network
+
 
 networks:
   minio-network:
