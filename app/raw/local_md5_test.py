@@ -8,7 +8,7 @@ def calculate_local_md5():
         file_content = f.read()
         local_md5 = hashlib.md5(file_content).hexdigest()
 
-    print(local_md5)
+    return local_md5
 
 
 if __name__ == "__main__":

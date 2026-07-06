@@ -17,8 +17,7 @@ def calculate_minio_md5():
 
     minio_md5 = hashlib.md5(file_bytes).hexdigest()
 
-
-    print(minio_md5)
+    return minio_md5
 
 
 if __name__ == "__main__":
