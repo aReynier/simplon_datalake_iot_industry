@@ -5,13 +5,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def calculate_minio_md5():
+def calculate_minio_md5(minio_file_key):
     s3 = boto3.client('s3',
             endpoint_url='http://localhost:9000',
             aws_access_key_id=os.getenv("MINIO_ROOT_USER"),
             aws_secret_access_key=os.getenv("MINIO_ROOT_PASSWORD"))
     
-    object = s3.get_object(Bucket='raw', Key='production_lines/lineA/LineA_Stable_10K.csv')
+    object = s3.get_object(Bucket='raw', Key=minio_file_key)
 
     file_bytes = object['Body'].read()
 

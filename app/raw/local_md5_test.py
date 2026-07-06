@@ -1,10 +1,8 @@
 import hashlib
 
-# def calculate_local_md5(file_name):
-    # hash_md5 = hashlib.md5()
-def calculate_local_md5():
+def calculate_local_md5(local_file_path):
 
-    with open(f"data_input/LineA_Stable_10K.csv", 'rb') as f:
+    with open(local_file_path, 'rb') as f:
         file_content = f.read()
         local_md5 = hashlib.md5(file_content).hexdigest()
 
