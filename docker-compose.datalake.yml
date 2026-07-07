@@ -7,7 +7,7 @@ services:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
     networks:
-      - minio-network
+      - datalake-network
     volumes:
       - minio-volume:/data
     ports:
@@ -40,7 +40,7 @@ services:
       - MINIO_LOCAL_ADMIN_USER=${MINIO_LOCAL_ADMIN_USER}
       - MINIO_LOCAL_ADMIN_PASSWORD=${MINIO_LOCAL_ADMIN_PASSWORD}
     networks:
-      - minio-network
+      - datalake-network
     entrypoint: /bin/bash /tmp/init-minio.sh
 
   python:
@@ -54,11 +54,12 @@ services:
     volumes:
       - ./app:/app
     networks:
-      - minio-network
+      - datalake-network
 
 
 networks:
-  minio-network:
+  datalake-network:
+    name: datalake-network
     driver: bridge
 
 volumes:

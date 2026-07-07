@@ -86,7 +86,8 @@ Notre datalake est organisé avec les couches suivantes:
 Ce datalake est conteneurisé au moyen d'un docker compose, pour le lancer:
 
 ```
-docker compose up
+docker compose -f docker-compose.datalake.yml up -d
+docker compose -f docker-compose.airflow.yaml up
 ```
 
 Minio se trouve à l'adresse suivante:
@@ -94,6 +95,14 @@ Minio se trouve à l'adresse suivante:
 ```
 http://localhost:9001
 ```
+
+Et Airflow à l'adresse suivante:
+
+```
+http://localhost:8080
+```
+
+Pur chacune des deux plate-forme, un nom d'utilisateur et un mot de passe sera demandé. Employer ceux du fichier .env
 
 ## Source
 
