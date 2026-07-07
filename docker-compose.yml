@@ -28,7 +28,7 @@ services:
         condition: service_healthy
     volumes:
       - ./init-minio.sh:/tmp/init-minio.sh:ro
-      - ./policies/analyst-policy.json:/tmp/policies/analyst-policy.json:ro
+      - ./minio_config/policies/analyst-policy.json:/tmp/policies/analyst-policy.json:ro
     env_file: .env
     environment:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
