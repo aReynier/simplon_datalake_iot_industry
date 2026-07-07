@@ -3,9 +3,27 @@ import boto3
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
-def calculate_minio_md5(minio_file_key):
+
+def verify_data_integrity(local_file_path, minio_file_key):
+    if check_local_file(local_file_path) == check_minio_object(minio_file_key):
+        print('check ok')
+    else:
+        print('chek not ok')
+
+
+def check_local_file(local_file_path):
+
+    with open(local_file_path, 'rb') as f:
+        file_content = f.read()
+        local_md5 = hashlib.md5(file_content).hexdigest()
+
+    return local_md5
+
+
+def check_minio_object(minio_file_key):
     s3 = boto3.client('s3',
             endpoint_url='http://localhost:9000',
             aws_access_key_id=os.getenv("MINIO_ROOT_USER"),
@@ -21,4 +39,4 @@ def calculate_minio_md5(minio_file_key):
 
 
 if __name__ == "__main__":
-    calculate_minio_md5()
+    verify_data_integrity()

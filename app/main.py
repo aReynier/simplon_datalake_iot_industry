@@ -1,5 +1,5 @@
 from raw.data_ingestion import ingest_data
-from raw.files_check_md5 import files_check_md5
+from raw_integrity_check import check_raw_integrity
 
 
 def main():
@@ -9,7 +9,8 @@ def main():
     ingest_data("LineD_SpikeControl", "D")
     ingest_data("LineE_SmoothRun", "E")
 
-files_check_md5()
+    check_raw_integrity()
+
 
 if __name__ == "__main__":
     main()
