@@ -4,3 +4,4 @@ app/__pycache__/*
 app/raw/__pycache__/*
 logs/*
 !logs/.gitkeep
+docker-volume/
