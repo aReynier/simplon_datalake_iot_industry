@@ -504,6 +504,7 @@ services:
         condition: service_completed_successfully
     networks:
       - app_net
+      - datalake-network
     healthcheck:
       test: [ "CMD", "wget", "-q", "--spider",  "http://localhost:8586/healthcheck" ]
 
@@ -547,6 +548,7 @@ services:
       - "8081:8080"
     networks:
       - app_net
+      - datalake-network
     volumes:
       - ingestion-volume-dag-airflow:/opt/airflow/dag_generated_configs
       - ingestion-volume-dags:/opt/airflow/dags
@@ -558,3 +560,7 @@ networks:
       driver: default
       config:
         - subnet: "172.16.240.0/24"
+
+  datalake-network:
+    name: datalake-network
+    external: true
