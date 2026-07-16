@@ -1,0 +1,24 @@
+{
+    "entries":[
+        {
+            "dataPath": "production_lines",
+            "structureFormat": "csv",
+            "isPartitioned": true,
+            "containerName": "raw",
+            "partitionColumns": [
+                {
+                    "name" : "year",
+                    "dataType": "STRING"
+                },
+                {
+                    "name" : "month",
+                    "dataType": "STRING"
+                },
+                {
+                    "name" : "line",
+                    "dataType": "STRING"             
+                }
+            ]
+        }
+    ]
+}

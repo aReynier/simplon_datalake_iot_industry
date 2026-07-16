@@ -17,7 +17,7 @@ def upload_csv(production_line, year, month):
     #See if it's not better to change for an online path instead of local path
     local_path = f"data_input/{production_line['name']}.csv"
     bucket_name = "raw"
-    target_path = f"/year={year}/month={month}/line={production_line['id']}/{production_line['name']}.csv"
+    target_path = f"/production_lines/year={year}/month={month}/line={production_line['id']}/{production_line['name']}.csv"
 
     # Simple CSV upload in bucket raw
     # next goal: partitioning as year/month/line on raw
