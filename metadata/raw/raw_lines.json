@@ -1,0 +1,177 @@
+[
+    {
+        "name": "raw_LineA_Stable_10K",
+        "displayName": "raw production line a",
+        "description": "raw a production line",
+        "prefix": "raw/production_lines/line=a",
+        "fileFormats": ["csv"],
+        "dataModel": {
+            "isPartitioned": true,
+            "columns": [
+                {
+                    "name": "timestamp",
+                    "dataType": "TIMESTAMP",
+                    "description": "Date et heure enregistrées"
+                },
+                {
+                    "name": "temperature",
+                    "dataType": "FLOAT",
+                    "description": "Température enregistrée"
+                },
+                {
+                    "name": "pressure",
+                    "dataType": "FLOAT",
+                    "description": "pression enregistrée"
+                },
+                {
+                    "name": "elapsed_time",
+                    "dataType": "FLOAT",
+                    "description": "Temps écoulé"
+                },
+                {
+                    "name": "label",
+                    "dataType": "INT",
+                    "description": "0=fonctionnel, 1=anomalie"
+                }
+            ]
+        },
+        "service": "minio"
+    },
+        {
+        "name": "raw_LineB_Flux",
+        "displayName": "raw production line b",
+        "description": "raw b production line",
+        "prefix": "raw/production_lines/line=b",
+        "fileFormats": ["csv"],
+        "dataModel": {
+            "isPartitioned": true,
+            "columns": [
+                {
+                    "name": "timestamp",
+                    "dataType": "TIMESTAMP",
+                    "description": "Date et heure enregistrées"
+                },
+                {
+                    "name": "temperature",
+                    "dataType": "FLOAT",
+                    "description": "Température enregistrée"
+                },
+                {
+                    "name": "pressure",
+                    "dataType": "FLOAT",
+                    "description": "pression enregistrée"
+                },
+                {
+                    "name": "elapsed_time",
+                    "dataType": "FLOAT",
+                    "description": "Temps écoulé"
+                },
+                {
+                    "name": "label",
+                    "dataType": "INT",
+                    "description": "0=fonctionnel, 1=anomalie"
+                }
+            ]
+        },
+        "service": "minio"
+    },
+    {
+        "name": "raw_LineC_Turbulent",
+        "displayName": "raw production line c",
+        "description": "raw c production line",
+        "prefix": "raw/production_lines/line=c",
+        "fileFormats": ["csv"],
+        "dataModel": {
+            "isPartitioned": true,
+            "columns": [
+                {
+                    "name": "timestamp",
+                    "dataType": "TIMESTAMP",
+                    "description": "Date et heure enregistrées"
+                },
+                {
+                    "name": "temperature",
+                    "dataType": "FLOAT",
+                    "description": "Température enregistrée"
+                },
+                {
+                    "name": "pressure",
+                    "dataType": "FLOAT",
+                    "description": "pression enregistrée"
+                },
+                {
+                    "name": "label",
+                    "dataType": "INT",
+                    "description": "0=fonctionnel, 1=anomalie"
+                }
+            ]
+        },
+        "service": "minio"
+    },
+    {
+        "name": "raw_LineD_SpikeControl",
+        "displayName": "raw production line d",
+        "description": "raw d production line",
+        "prefix": "raw/production_lines/line=d",
+        "fileFormats": ["csv"],
+        "dataModel": {
+            "isPartitioned": true,
+            "columns": [
+                {
+                    "name": "timestamp",
+                    "dataType": "TIMESTAMP",
+                    "description": "Date et heure enregistrées"
+                },
+                {
+                    "name": "temperature",
+                    "dataType": "FLOAT",
+                    "description": "Température enregistrée"
+                },
+                {
+                    "name": "pressure",
+                    "dataType": "FLOAT",
+                    "description": "pression enregistrée"
+                },
+                {
+                    "name": "label",
+                    "dataType": "INT",
+                    "description": "0=fonctionnel, 1=anomalie"
+                }
+            ]
+        },
+        "service": "minio"
+    },
+    {
+        "name": "raw_LineE_SmoothRun",
+        "displayName": "raw production line e",
+        "description": "raw e production line",
+        "prefix": "raw/production_lines/line=e",
+        "fileFormats": ["csv"],
+        "dataModel": {
+            "isPartitioned": true,
+            "columns": [
+                {
+                    "name": "timestamp",
+                    "dataType": "TIMESTAMP",
+                    "description": "Date et heure enregistrées"
+                },
+                {
+                    "name": "temperature",
+                    "dataType": "FLOAT",
+                    "description": "Température enregistrée"
+                },
+                {
+                    "name": "pressure",
+                    "dataType": "FLOAT",
+                    "description": "pression enregistrée"
+                },
+                {
+                    "name": "label",
+                    "dataType": "INT",
+                    "description": "0=fonctionnel, 1=anomalie"
+                }
+            ]
+        },
+        "service": "minio"
+    }
+]
