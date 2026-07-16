@@ -1,0 +1,43 @@
+{
+    "id": "",
+    "name": "",
+    "fullyQualifiedName": "",
+    "displayName": "",
+    "description": "",
+    "prefix": "",
+    "fileFormats": [],
+    "dataModel": {
+        "isPartitioned": true
+    },
+    "service": {
+        "id": "",
+        "type": "",
+        "name": "",
+        "fullyQualifiedName": ""
+    },
+    "children": [
+        {
+        "id": "",
+        "type": "",
+        "name": "",
+        "fullyQualifiedName": ""
+        }
+    ],
+    "owners": [
+        {
+        "id": "",
+        "type": "",
+        "name": "",
+        "displayName": ""
+        }
+    ],
+    "tags": [
+        {
+        "tagFQN": "",
+        "description": "",
+        "source": "",
+        "labelType": "",
+        "state": ""
+        }
+    ]
+}
